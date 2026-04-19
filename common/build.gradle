@@ -69,7 +69,7 @@ tasks.register('compileRustAndroidAArch64', Exec) {
     group = 'rust'
     workingDir rustProjectDir
     commandLine dockerCommand
-    args 'cargo', 'zigbuild', '--release', '--target', 'aarch64-linux-android'
+    args 'cargo', 'build', '--release', '--target', 'aarch64-linux-android'
     dependsOn createContainersDirectory
 }
 
