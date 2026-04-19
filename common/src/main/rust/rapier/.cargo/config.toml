@@ -1,2 +1,6 @@
 [target.x86_64-pc-windows-gnu]
 rustflags = ["-C", "link-arg=-Wl,-Brepro"]
+
+[target.aarch64-linux-android]
+linker = "aarch64-linux-android21-clang"
+ar = "llvm-ar"
