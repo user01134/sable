@@ -3,12 +3,16 @@ FROM messense/cargo-zigbuild@sha256:4c18634a3d9c7775683b0f1e313584770d32216623a1
 
 ARG RUST_VERSION
 RUN rustup default ${RUST_VERSION}
-RUN rustup target add x86_64-apple-darwin
-RUN rustup target add aarch64-apple-darwin
-RUN rustup target add x86_64-unknown-linux-gnu
-RUN rustup target add aarch64-unknown-linux-gnu
-RUN rustup target add x86_64-unknown-freebsd
-# used for AArch64 FreeBSD
-#RUN rustup component add rust-src
+RUN rustup target add aarch64-linux-android
+
+RUN apt-get update && apt-get install -y wget unzip \
+ && wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip \
+ && unzip android-ndk-r26d-linux.zip \
+ && mv android-ndk-r26d /opt/android-ndk \
+ && rm android-ndk-r26d-linux.zip
+ENV ANDROID_NDK_HOME=/opt/android-ndk
+ENV PATH=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
+ENV CC_aarch64_linux_android=aarch64-linux-android21-clang
+ENV CXX_aarch64_linux_android=aarch64-linux-android21-clang++
 
 WORKDIR /
