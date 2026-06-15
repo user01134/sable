@@ -14,31 +14,12 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 import java.nio.file.Files
 
-def mac(arch) {
-    [triple: "${arch}-apple-darwin", suffix: "", arch: arch, os: "macos", ext: "dylib", lib: true]
-}
-
-def linux(arch) {
-    [triple: "${arch}-unknown-linux-gnu", suffix: ".2.17", arch: arch, os: "linux", ext: "so", lib: true]
-}
-
-def freebsd(arch) {
-    [triple: "${arch}-unknown-freebsd", suffix: "", arch: arch, os: "freebsd", ext: "so", lib: true]
-}
-
-def windows(arch) {
-    [triple: "${arch}-pc-windows-msvc", suffix: "", arch: arch, os: "windows", ext: "dll", lib: false]
+def linux_android(arch) {
+    [triple: "${arch}-linux-android", suffix: "", arch: arch, os: "linux-android", ext: "so", lib: true]
 }
 
 def supportedTargets = [
-        mac("x86_64"),
-        mac("aarch64"),
-        linux("x86_64"),
-        linux("aarch64"),
-        windows("x86_64"),
-        windows("aarch64"),
-//        freebsd("x86_64"),
-        // freebsd("aarch64"),
+        linux-android("aarch64")
 ]
 def pinnedRustVersion = 'nightly-2026-01-29'
 def rustRootDir = file("src/main/rust")
