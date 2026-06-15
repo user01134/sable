@@ -15,7 +15,7 @@ import org.apache.tools.ant.taskdefs.condition.Os
 import java.nio.file.Files
 
 def linux_android(arch) {
-    [triple: "${arch}-linux-android", suffix: "21", arch: arch, os: "linux-android", ext: "so", lib: true]
+    [triple: "${arch}-linux-android", suffix: "", arch: arch, os: "linux-android", ext: "so", lib: true]
 }
 
 def supportedTargets = [
