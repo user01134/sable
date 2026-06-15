@@ -19,7 +19,7 @@ def linux_android(arch) {
 }
 
 def supportedTargets = [
-        linux-android("aarch64")
+        linux_android("aarch64")
 ]
 def pinnedRustVersion = 'nightly-2026-01-29'
 def rustRootDir = file("src/main/rust")
